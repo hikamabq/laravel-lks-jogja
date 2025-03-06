@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TransactionController;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +22,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/product', [HomeController::class, 'product']);
 Route::get('/detail/{id}', [HomeController::class, 'detail']);
+Route::get('/add/{id}', [TransactionController::class, 'add']);
+Route::get('/transaction', [TransactionController::class, 'index']);
