@@ -24,3 +24,6 @@ Route::get('/product', [HomeController::class, 'product']);
 Route::get('/detail/{id}', [HomeController::class, 'detail']);
 Route::get('/add/{id}', [TransactionController::class, 'add']);
 Route::get('/transaction', [TransactionController::class, 'index']);
+Route::get('/minus/{id}', [TransactionController::class, 'minus']);
+Route::get('/plus/{id}', [TransactionController::class, 'plus']);
+Route::get('/delete/{id}', [TransactionController::class, 'delete']);

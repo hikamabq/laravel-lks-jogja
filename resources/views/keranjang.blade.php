@@ -18,10 +18,23 @@
                     $total_belanja += $item->subtotal;
                 @endphp
                     <tr>
-                        <td>{{ $item->product->name }}</td>
-                        <td>{{ $item->jumlah }}</td>
+                        <td>
+                            <img src="{{ asset('storage/'.$item->product->photo.'') }}" class="menu-img rounded-circle" width="50px" alt="">
+                            {{ $item->product->name }}</td>
+                        <td class="d-flex align-items-center">
+                            <a href="/minus/{{ $item->id }}" class="btn btn-danger">-</a>
+                            <div class="p-3">
+                                {{ $item->jumlah }}
+                            </div>
+                            <a href="/plus/{{ $item->id }}" class="btn btn-danger">+</a>
+                        </td>
                         <td>{{ number_format($item->harga) }}</td>
-                        <td>{{ number_format($item->subtotal) }}</td>
+                        <td class="d-flex justify-content-between align-items-center">
+                            <div>
+                                {{ number_format($item->subtotal) }}
+                            </div>
+                            <a href="/delete/{{ $item->id }}" class="btn btn-warning">X</a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
