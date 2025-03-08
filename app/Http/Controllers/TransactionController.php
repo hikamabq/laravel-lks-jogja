@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Products;
 use App\Models\Transaction;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -73,5 +75,27 @@ class TransactionController extends Controller
         $transaction = Transaction::findOrFail($id);
         $transaction->delete();
         return redirect('/transaction'); 
+    }
+
+    public function order(Request $request)
+    {
+        Order::create([
+            'nama_pembeli' => $request->nama_pembeli,
+            'nomor_hp' => $request->nomor_hp,
+            'alamat' => $request->alamat,
+            'nomor_nota' => $request->nomor_nota,
+        ]);
+
+        Transaction::where('status', 0)->update([
+            'status' => 1,
+            'nomor_nota' => $request->nomor_nota
+        ]);
+
+        return redirect('/selesai');
+    }
+
+    public function selesai()
+    {
+        return view('selesai');
     }
 }

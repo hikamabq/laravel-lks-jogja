@@ -49,5 +49,28 @@
                 </tr>
             </tfoot>
         </table>
+
+        {{-- form --}}
+        <form action="{{ url('/order') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <label for="" class="fw-bold">Nama Pembeli</label>
+            <input type="text" class="form-control" name="nama_pembeli">
+
+            <label for="" class="fw-bold">Nomor HP</label>
+            <input type="text" class="form-control" name="nomor_hp">
+
+            <label for="" class="fw-bold">Alamat</label>
+            <input type="text" class="form-control" name="alamat">
+
+            @php
+                $nota = rand();
+            @endphp
+            <label for="" class="fw-bold">Nomor Nota</label>
+            <input type="text" class="form-control bg-light" name="nomor_nota" value="{{ $nota }}" readonly>
+
+            <div class="my-3">
+                <button type="submit" class="btn btn-success">Kirim</button>
+            </div>
+        </form>
     </div>
 @endsection

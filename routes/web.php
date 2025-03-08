@@ -27,3 +27,5 @@ Route::get('/transaction', [TransactionController::class, 'index']);
 Route::get('/minus/{id}', [TransactionController::class, 'minus']);
 Route::get('/plus/{id}', [TransactionController::class, 'plus']);
 Route::get('/delete/{id}', [TransactionController::class, 'delete']);
+Route::post('/order', [TransactionController::class, 'order']);
+Route::get('/selesai', [TransactionController::class, 'selesai']);

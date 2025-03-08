@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.5-10.4.27-MariaDB)
 # Database: resto
-# Generation Time: 2025-03-05 07:54:21 +0000
+# Generation Time: 2025-03-08 02:54:42 +0000
 # ************************************************************
 
 
@@ -49,7 +49,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
@@ -60,9 +60,38 @@ VALUES
 	(2,'2014_10_12_100000_create_password_reset_tokens_table',1),
 	(3,'2019_08_19_000000_create_failed_jobs_table',1),
 	(4,'2019_12_14_000001_create_personal_access_tokens_table',1),
-	(5,'2025_02_27_022041_create_products_table',2);
+	(5,'2025_02_27_022041_create_products_table',2),
+	(6,'2025_03_06_025132_create_transactions_table',3),
+	(7,'2025_03_08_023153_create_orders_table',4);
 
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table orders
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `orders`;
+
+CREATE TABLE `orders` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `nama_pembeli` varchar(255) NOT NULL,
+  `nomor_hp` varchar(255) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `nomor_nota` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+
+INSERT INTO `orders` (`id`, `nama_pembeli`, `nomor_hp`, `alamat`, `nomor_nota`, `created_at`, `updated_at`)
+VALUES
+	(1,'andi','0897879','solo','328034301','2025-03-08 02:53:45','2025-03-08 02:53:45');
+
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -131,6 +160,37 @@ VALUES
 	(4,'01JN2MRMTE44XJ9QK61EYKHRTR.jpg','Sandwich',5000,6,'<p>ini harusnya gambar sandwich</p>','2025-02-27 02:46:24','2025-02-27 02:46:24');
 
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table transactions
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `transactions`;
+
+CREATE TABLE `transactions` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `harga` int(11) NOT NULL,
+  `subtotal` int(11) NOT NULL,
+  `nomor_nota` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+LOCK TABLES `transactions` WRITE;
+/*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
+
+INSERT INTO `transactions` (`id`, `product_id`, `jumlah`, `harga`, `subtotal`, `nomor_nota`, `status`, `created_at`, `updated_at`)
+VALUES
+	(9,4,1,5000,5000,'328034301',1,'2025-03-07 02:46:00','2025-03-08 02:53:46'),
+	(10,1,1,15000,15000,'328034301',1,'2025-03-07 02:46:02','2025-03-08 02:53:46'),
+	(11,2,1,20000,20000,'328034301',1,'2025-03-07 02:46:05','2025-03-08 02:53:46');
+
+/*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
